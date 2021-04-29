@@ -1,0 +1,119 @@
+<html>
+<style>
+body{
+ background-image: url('2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+<style>
+	.h1{
+		font-color:green;
+		font-size: 40px;
+		margin-left: 20px;
+		padding-top: 20px;
+	}
+	.h2{
+		font-color:blue;
+		font-size: :30px;
+		padding-top: 20px;
+	}
+	.h3{
+		text-align: center;
+		font-size: 25px;
+	}
+	.div {
+	  width: 500px;
+	  padding: 10px;
+	  border: 5px solid gray;
+	  margin: 0;
+	  margin-left:600px;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<script>
+	function valid(Party,flag){
+var Party = Party;
+var flag = flag;
+console.log(Party);
+var request = new XMLHttpRequest();
+// console.log(request);
+//     request.onreadystatechange = function() {
+//         if (request.readyState === 4) {
+//             if (request.status === 200) {
+//                 alert('Successful .... ' + request.responseText);
+//             } else {
+//                 alert('Something went wrong, status was ' + request.status);
+//             }
+//         }
+//     };
+    // request.open('POST', 'pythonfile.py', true);
+    //  request.send(null);
+    // return false; 
+    $.ajax({
+    	url:"pythonfile.py",
+    	context:document.body
+    }).done(function(){
+    	console.log('done')
+    })
+}
+</script>
+<div class="h1">
+	<b>Candidates
+	</b>
+</div>
+<br>
+<form action = "{{ url_for('addrec') }}" method='POST'>
+<div class="div">
+<div class="h2">
+	<b>First Candident</b><br><br>
+	<div class="h3">
+	Name : KUNA HARSHA KUMAR<br><br>
+	Party: TRS<br><br>
+	Symbol : &#128663;
+	<br><br>
+		<input type="submit" name="trsbutton" value="TRS" />
+</div>
+</div>
+</div>
+<br>
+<div class="div">
+<div class="h2">
+	<b>Second Candident</b><br><br>
+	<div class="h3">
+	Name : CHANDU<br><br>
+	Party: CONGRESS<br><br>
+	Symbol: &#9742;
+	<br><br>
+		<input type="submit" name="congressbutton" value="CONGRESS" />
+</div>
+</div>
+</div>
+<br>
+<div class="div">
+<div class="h2">
+	<b>Third Candident</b><br><br>
+	<div class="h3">
+	Name : SHEKAR<br><br>
+	Party: BJP<br><br>
+	Symbol: &#9749;
+	<br><br>
+		<input type="submit" name="bjpbutton" value="BJP" />
+</div>
+</div>
+</div>
+</form>
+</html>
