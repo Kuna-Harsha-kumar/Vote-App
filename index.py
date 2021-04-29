@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template,request
 import sqlite3 as sql
 
-# creates a Flask application, named app
+global trscount,congresscount,bjpcount
 app = Flask(__name__,template_folder='templates')
 
 # a route where we will display a welcome message via an HTML template
@@ -30,10 +30,32 @@ def addrec():
                x=cur.execute("INSERT INTO voteing VALUES (?)",[t] )
                y=cur.execute("select count(*) from voteing where pname='trs'")               
                for i in y:
-                   print(i)
+                    trscount=i
+               y=cur.execute("select count(*) from voteing where pname='congress'")               
+               for j in y:
+                  congresscount=i
+               y=cur.execute("select count(*) from voteing where pname='bjp'")               
+               for k in y:
+                     bjpcount=i
 
                conn.commit()
                return render_template("third.html")
+@app.route('/viewresults',methods=['POST','GET'])
+def viewresults():
+  with sql.connect("database.db") as conn:
+               cur = conn.cursor()
+               y=cur.execute("select count(*) from voteing where pname='trs'")               
+               for i in y:
+                    trscount=i
+               y=cur.execute("select count(*) from voteing where pname='congress'")               
+               for j in y:
+                  congresscount=j
+               y=cur.execute("select count(*) from voteing where pname='bjp'")               
+               for k in y:
+                     bjpcount=k
+
+               conn.commit()
+  return render_template("results.html",trscount=trscount,congresscount=congresscount,bjpcount=bjpcount)
 
 # run the application
 if __name__ == "__main__":
