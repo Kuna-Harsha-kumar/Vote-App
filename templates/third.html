@@ -9,7 +9,7 @@ body{
 </style>
 <style>
 	.h{
-		font-size: 55px;
+		font-size: 20px;
 		font-color:green;
 		text-align: center;
 		margin-top: 100px;
@@ -18,4 +18,9 @@ body{
 <div class="h">
 	<b>THANK YOU FOR YOUR VALUABLE VOTE</b>
 </div>
+<br/>
+<div style="text-align: center;">
+	<form action = "{{ url_for('viewresults') }}">
+	<button>View Results</button>
+	</div>
 </html>
